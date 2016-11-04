@@ -48,22 +48,21 @@ public class Principal {
 	}
 	
 	public static boolean avoid(int i, int[] request){
-		int j = request.length;
-		if (request[j] <= processes[i].need[i]) {
-			if ( request[j] <= resources.available[j] ){
-				resources.available[j] = resources.available[j] - request[j];
-				processes[i].allocation[j] = processes[i].allocation[j] + request[j];
-				processes[i].need[j] = processes[i].need[j] - request[j];
+		for(int j=0; j<request.length; j++){
+			if (request[j] <= processes[i].need[i]) {
+				if ( request[j] <= resources.available[j] ){
+					resources.available[j] = resources.available[j] - request[j];
+					processes[i].allocation[j] = processes[i].allocation[j] + request[j];
+					processes[i].need[j] = processes[i].need[j] - request[j];
+					
+				} else{
+					return false;
+				}
 				
-			} else{
+			}else{
 				return false;
 			}
-			
-		}else{
-			return false;
 		}
-		
-		
 		return Safety();
 	}
 
@@ -85,12 +84,12 @@ public class Principal {
 		for(int i=0; i<totalProcesses; i++){
 			processes[i] = new Process(totalResources); // each process is properly created;
 			
-			System.out.println("For process "+i+" enter:/n"); //The message connects with the messages on the method bellow 
+			System.out.println("For process "+i+" enter:"); //The message connects with the messages on the method bellow 
 			processes[i].FillProcess(totalResources);
 
 		}
 		
-		int[] solicitation = {1, 0, 2};
+		int[] solicitation = {0, 1, 0};
 		result=avoid(1, solicitation);
 		
 		if(result)

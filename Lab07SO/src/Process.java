@@ -18,11 +18,11 @@ public class Process {
 		for(int j=0; j<resources; j++){
 			
 			//set the max instances of resource j that the process needs
-			System.out.println("The MAX of instances it needs from resource "+j+"/n");
+			System.out.println("The MAX of instances it needs from resource "+j+"");
 			max[j] = entry.nextInt();
 			
 			//set the instances of resource j that the process is allocating
-			System.out.println("The total of instances of resource "+j+" it is ALLOCATING /n");
+			System.out.println("The total of instances of resource "+j+" it is ALLOCATING ");
 			allocation[j] = entry.nextInt();
 		
 			// need = max-allocation
